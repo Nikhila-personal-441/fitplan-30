@@ -1,0 +1,127 @@
+type WaterEntry = 
+ record {
+   amountMl: nat;
+   timestamp: Timestamp;
+ };
+type UserProgress = 
+ record {
+   completedDays: vec nat;
+   fitnessTrack: FitnessTrack;
+   isDeveloper: bool;
+   lastCompletedDay: opt nat;
+   "principal": principal;
+ };
+type UserProfile = 
+ record {
+   age: nat;
+   createdAt: Timestamp;
+   dietaryRestrictions: text;
+   email: text;
+   fitnessTrack: FitnessTrack;
+   flexibilityLevel: FlexibilityLevel;
+   healthIssues: text;
+   heightCm: float64;
+   phone: text;
+   "principal": principal;
+   updatedAt: Timestamp;
+   weightKg: float64;
+ };
+type Timestamp = int;
+type ProfileInput = 
+ record {
+   age: nat;
+   dietaryRestrictions: text;
+   email: text;
+   flexibilityLevel: FlexibilityLevel;
+   healthIssues: text;
+   heightCm: float64;
+   phone: text;
+   weightKg: float64;
+ };
+type MealType = 
+ variant {
+   breakfast;
+   dinner;
+   lunch;
+   snack;
+ };
+type Meal = 
+ record {
+   ingredients: vec text;
+   instructions: vec text;
+   macros: Macros;
+   mealType: MealType;
+   name: text;
+   prepTimeMins: nat;
+   servings: nat;
+ };
+type Macros = 
+ record {
+   calories: nat;
+   carbsG: nat;
+   fatG: nat;
+   proteinG: nat;
+ };
+type FlexibilityLevel = nat;
+type FitnessTrack = 
+ variant {
+   advanced;
+   beginner;
+   intermediate;
+ };
+type Exercise = 
+ record {
+   description: text;
+   difficulty: text;
+   durationSec: nat;
+   instructions: text;
+   name: text;
+   reps: nat;
+   sets: nat;
+ };
+type DayPlan = 
+ record {
+   day: nat;
+   exercises: vec Exercise;
+   focus: text;
+   meals: vec Meal;
+   title: text;
+ };
+type DateKey = text;
+type DailyTrackingSummary = 
+ record {
+   date: DateKey;
+   lastUpdated: Timestamp;
+   steps: nat;
+   totalWaterMl: nat;
+   waterEntries: vec WaterEntry;
+   waterGoalMl: nat;
+ };
+type DailyStepCount = 
+ record {
+   date: DateKey;
+   lastUpdated: Timestamp;
+   steps: nat;
+ };
+service : {
+  addWaterEntry: (date: text, amountMl: nat) -> ();
+  clearLastWaterEntry: (date: text) -> ();
+  getAllDayPlans: () -> (vec DayPlan) query;
+  getDailyTrackingSummary: (date: text) -> (DailyTrackingSummary) query;
+  getDayPlan: (day: nat) -> (opt DayPlan) query;
+  getMyProfile: () -> (opt UserProfile) query;
+  getMyProgress: () -> (UserProgress) query;
+  getStepCount: (date: text) -> (DailyStepCount) query;
+  getWaterIntake: (date: text) -> (DailyTrackingSummary) query;
+  hasCompletedOnboarding: () -> (bool) query;
+  markDayComplete: (day: nat) -> (variant {
+                                    err: text;
+                                    ok: text;
+                                  });
+  saveProfile: (input: ProfileInput) -> (UserProfile);
+  saveStepCount: (date: text, steps: nat) -> ();
+  setDeveloperMode: (code: text) -> (variant {
+                                       err: text;
+                                       ok: text;
+                                     });
+}

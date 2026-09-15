@@ -1,0 +1,98 @@
+// Version: 3.0.0
+type DailyStepCount__623164773 =
+  {
+    date : DateKey__856556366;
+    lastUpdated : Timestamp__301639476;
+    steps : Nat
+  };
+type DailyTracking__1058821686 =
+  {
+    date : DateKey__856556366;
+    principal : Principal;
+    stepCount : DailyStepCount__623164773;
+    waterEntries : [WaterEntry__860053334]
+  };
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type DateKey__856556366 = Text;
+type FitnessTrack__399639105 = {#advanced; #beginner; #intermediate};
+type FlexibilityLevel__79289386 = Nat;
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Map__158565046<K, V> = Map__297112838<K, V>;
+type Map__297112838<K, V> =
+  {var root : Node__46230540<K, V>; var size : Nat__490723111};
+type Map__605269027<K, V> = Map__158565046<K, V>;
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type OldTimestamp__27916213 = Int;
+type OldUserProfile__416069324 =
+  {
+    age : Nat;
+    createdAt : OldTimestamp__27916213;
+    dietaryRestrictions : Text;
+    email : Text;
+    flexibilityLevel : Nat;
+    healthIssues : Text;
+    heightCm : Float;
+    phone : Text;
+    principal : Principal;
+    updatedAt : OldTimestamp__27916213;
+    weightKg : Float
+  };
+type OldUserProgress__811275140 =
+  {
+    completedDays : [Nat];
+    isDeveloper : Bool;
+    lastCompletedDay : ?Nat;
+    principal : Principal
+  };
+type Timestamp__301639476 = Int;
+type UserProfile__446616884 =
+  {
+    age : Nat;
+    createdAt : Timestamp__301639476;
+    dietaryRestrictions : Text;
+    email : Text;
+    fitnessTrack : FitnessTrack__399639105;
+    flexibilityLevel : FlexibilityLevel__79289386;
+    healthIssues : Text;
+    heightCm : Float;
+    phone : Text;
+    principal : Principal;
+    updatedAt : Timestamp__301639476;
+    weightKg : Float
+  };
+type UserProgress__1039237785 =
+  {
+    completedDays : [Nat];
+    fitnessTrack : FitnessTrack__399639105;
+    isDeveloper : Bool;
+    lastCompletedDay : ?Nat;
+    principal : Principal
+  };
+type WaterEntry__860053334 =
+  {amountMl : Nat; timestamp : Timestamp__301639476};
+actor ({
+  in profiles : Map__605269027<Principal, OldUserProfile__416069324>;
+  in progressMap : Map__605269027<Principal, OldUserProgress__811275140>
+}, {
+  stable profiles :
+    {
+      var root : Node__46230540<Principal, UserProfile__446616884>;
+      var size : Nat__490723111
+    };
+  stable progressMap :
+    {
+      var root : Node__46230540<Principal, UserProgress__1039237785>;
+      var size : Nat__490723111
+    };
+  stable trackingMap :
+    {
+      var root : Node__46230540<Text, DailyTracking__1058821686>;
+      var size : Nat__490723111
+    }
+});

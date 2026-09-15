@@ -1,0 +1,525 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: GeneralSans, sans-serif;
+    --font-body: Inter, sans-serif;
+    --font-mono: JetBrainsMono, monospace;
+    --radius: 1rem;
+
+    --background: 0.99 0 0;
+    --foreground: 0.15 0 0;
+    --card: 1.0 0 0;
+    --card-foreground: 0.15 0 0;
+    --popover: 1.0 0 0;
+    --popover-foreground: 0.15 0 0;
+
+    --primary: 0.71 0.19 158;
+    --primary-foreground: 0.98 0 0;
+
+    --secondary: 0.6 0.2 25;
+    --secondary-foreground: 0.98 0 0;
+    --muted: 0.94 0.01 0;
+    --muted-foreground: 0.5 0 0;
+
+    --accent: 0.76 0.12 80;
+    --accent-foreground: 0.2 0 0;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.92 0 0;
+    --input: 0.96 0 0;
+    --ring: 0.71 0.19 158;
+
+    --chart-1: 0.71 0.19 158;
+    --chart-2: 0.6 0.2 25;
+    --chart-3: 0.76 0.12 80;
+    --chart-4: 0.55 0.15 155;
+    --chart-5: 0.65 0.18 250;
+
+    --sidebar: 0.98 0 0;
+    --sidebar-foreground: 0.15 0 0;
+    --sidebar-primary: 0.71 0.19 158;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.94 0.01 0;
+    --sidebar-accent-foreground: 0.15 0 0;
+    --sidebar-border: 0.92 0 0;
+    --sidebar-ring: 0.71 0.19 158;
+
+    /* Premium custom shadows */
+    --shadow-glow-primary: 0 0 32px oklch(var(--primary) / 0.28), 0 0 8px
+      oklch(var(--primary) / 0.14);
+    --shadow-glow-accent: 0 0 24px oklch(var(--accent) / 0.22);
+    --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+    --shadow-card-hover: 0 8px 28px rgba(0, 0, 0, 0.1), 0 2px 8px
+      rgba(0, 0, 0, 0.06);
+    --shadow-header: 0 1px 0 oklch(var(--border)), 0 4px 24px
+      rgba(0, 0, 0, 0.06);
+  }
+
+  .dark {
+    --background: 0.1 0 0;
+    --foreground: 0.95 0 0;
+    --card: 0.14 0 0;
+    --card-foreground: 0.95 0 0;
+    --popover: 0.18 0 0;
+    --popover-foreground: 0.95 0 0;
+
+    --primary: 0.78 0.18 158;
+    --primary-foreground: 0.1 0 0;
+
+    --secondary: 0.72 0.19 25;
+    --secondary-foreground: 0.1 0 0;
+    --muted: 0.2 0 0;
+    --muted-foreground: 0.6 0 0;
+
+    --accent: 0.82 0.1 80;
+    --accent-foreground: 0.1 0 0;
+
+    --destructive: 0.65 0.19 22;
+    --destructive-foreground: 0.1 0 0;
+
+    --border: 0.24 0 0;
+    --input: 0.2 0 0;
+    --ring: 0.78 0.18 158;
+
+    --chart-1: 0.78 0.18 158;
+    --chart-2: 0.72 0.19 25;
+    --chart-3: 0.82 0.1 80;
+    --chart-4: 0.72 0.16 155;
+    --chart-5: 0.75 0.15 250;
+
+    --sidebar: 0.14 0 0;
+    --sidebar-foreground: 0.95 0 0;
+    --sidebar-primary: 0.78 0.18 158;
+    --sidebar-primary-foreground: 0.1 0 0;
+    --sidebar-accent: 0.2 0 0;
+    --sidebar-accent-foreground: 0.85 0 0;
+    --sidebar-border: 0.24 0 0;
+    --sidebar-ring: 0.78 0.18 158;
+
+    --shadow-glow-primary: 0 0 40px oklch(var(--primary) / 0.35), 0 0 12px
+      oklch(var(--primary) / 0.18);
+    --shadow-glow-accent: 0 0 28px oklch(var(--accent) / 0.28);
+    --shadow-card: 0 2px 16px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.2);
+    --shadow-card-hover: 0 8px 32px rgba(0, 0, 0, 0.4), 0 2px 10px
+      rgba(0, 0, 0, 0.24);
+    --shadow-header: 0 1px 0 oklch(var(--border)), 0 4px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@font-face {
+  font-family: GeneralSans;
+  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Inter;
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-weight: 400 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: JetBrainsMono;
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@layer utilities {
+  /* ─── Transitions ─── */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .transition-fast {
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* ─── Premium tile interactions ─── */
+  .tile-hover {
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s
+      cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .tile-hover:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  /* Active day — gradient border + glow */
+  .tile-active {
+    position: relative;
+    background: oklch(var(--card));
+    border: 2px solid oklch(var(--primary));
+    box-shadow: var(--shadow-glow-primary);
+  }
+  .tile-active::before {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: calc(var(--radius) + 3px);
+    background: linear-gradient(
+      135deg,
+      oklch(var(--primary) / 0.5),
+      oklch(var(--accent) / 0.4),
+      oklch(var(--primary) / 0.2)
+    );
+    z-index: -1;
+    filter: blur(6px);
+  }
+
+  /* Completed day — green tinted border + soft shadow */
+  .tile-completed {
+    background: oklch(var(--card));
+    border: 2px solid oklch(0.72 0.17 155);
+    box-shadow: 0 0 16px oklch(0.72 0.17 155 / 0.15), var(--shadow-card);
+  }
+
+  /* Locked day — desaturated with lock overlay */
+  .tile-locked {
+    background: oklch(var(--muted));
+    border: 1.5px solid oklch(var(--border));
+    opacity: 0.55;
+    filter: grayscale(0.65);
+    cursor: not-allowed;
+  }
+
+  /* Developer override — all days accessible, subtle indicator */
+  .tile-developer {
+    position: relative;
+  }
+  .tile-developer::after {
+    content: "DEV";
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    font-size: 8px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: oklch(var(--primary) / 0.7);
+    line-height: 1;
+  }
+
+  /* ─── Milestone badge — pulse-glow at days 7/14/21/30 ─── */
+  .milestone-badge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 0.625rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-family: var(--font-display);
+    background: linear-gradient(
+      135deg,
+      oklch(var(--accent)),
+      oklch(var(--primary))
+    );
+    color: oklch(var(--primary-foreground));
+    box-shadow: 0 0 0 0 oklch(var(--primary) / 0.5);
+    animation: milestone-pulse 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes milestone-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 oklch(var(--primary) / 0.5);
+    }
+    50% {
+      box-shadow: 0 0 0 8px oklch(var(--primary) / 0), 0 0 20px
+        oklch(var(--accent) / 0.35);
+    }
+  }
+
+  /* ─── Fitness / difficulty badges ─── */
+  .fitness-badge {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    border-radius: 9999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    font-family: var(--font-display);
+  }
+
+  .difficulty-easy {
+    background-color: oklch(var(--primary) / 0.12);
+    color: oklch(var(--primary));
+    border: 1px solid oklch(var(--primary) / 0.25);
+  }
+
+  .difficulty-moderate {
+    background-color: oklch(var(--accent) / 0.15);
+    color: oklch(var(--accent) / 0.85);
+    border: 1px solid oklch(var(--accent) / 0.3);
+  }
+
+  .difficulty-hard {
+    background-color: oklch(var(--destructive) / 0.12);
+    color: oklch(var(--destructive));
+    border: 1px solid oklch(var(--destructive) / 0.25);
+  }
+
+  /* ─── Exercise meta data ─── */
+  .exercise-meta {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: oklch(var(--muted-foreground));
+    letter-spacing: -0.01em;
+  }
+
+  /* ─── Nutrition badge — mono micro-data ─── */
+  .nutrition-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.3125rem 0.625rem;
+    border-radius: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    background: oklch(var(--muted));
+    color: oklch(var(--muted-foreground));
+    border: 1px solid oklch(var(--border));
+    white-space: nowrap;
+  }
+
+  .nutrition-badge-calories {
+    background: oklch(var(--secondary) / 0.1);
+    color: oklch(var(--secondary));
+    border-color: oklch(var(--secondary) / 0.25);
+  }
+
+  .nutrition-badge-protein {
+    background: oklch(var(--primary) / 0.1);
+    color: oklch(var(--primary));
+    border-color: oklch(var(--primary) / 0.2);
+  }
+
+  .nutrition-badge-carbs {
+    background: oklch(var(--accent) / 0.12);
+    color: oklch(var(--accent) / 0.8);
+    border-color: oklch(var(--accent) / 0.25);
+  }
+
+  .nutrition-badge-fat {
+    background: oklch(var(--destructive) / 0.1);
+    color: oklch(var(--destructive) / 0.9);
+    border-color: oklch(var(--destructive) / 0.2);
+  }
+
+  /* ─── Success pop — completion celebration ─── */
+  .success-pop {
+    animation: success-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  @keyframes success-pop {
+    0% {
+      transform: scale(0.4);
+      opacity: 0;
+    }
+    60% {
+      transform: scale(1.18);
+    }
+    80% {
+      transform: scale(0.96);
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* ─── Day complete burst ─── */
+  .complete-burst {
+    animation: complete-burst 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  @keyframes complete-burst {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 oklch(0.72 0.17 155 / 0.6);
+    }
+    40% {
+      box-shadow: 0 0 0 20px oklch(0.72 0.17 155 / 0);
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 oklch(0.72 0.17 155 / 0);
+    }
+  }
+
+  /* ─── Shimmer / skeleton loading ─── */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      oklch(var(--muted)) 25%,
+      oklch(var(--border)) 50%,
+      oklch(var(--muted)) 75%
+    );
+    background-size: 400% 100%;
+    animation: shimmer 1.8s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: 100% 0;
+    }
+    100% {
+      background-position: -100% 0;
+    }
+  }
+
+  /* ─── Entrance animations ─── */
+  .fade-up {
+    animation: fade-up 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in {
+    animation: fade-in 0.35s ease forwards;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* ─── Premium header gradient helpers ─── */
+  .header-brand-gradient {
+    background: linear-gradient(
+      135deg,
+      oklch(var(--primary)) 0%,
+      oklch(var(--accent)) 100%
+    );
+  }
+
+  .header-brand-text {
+    background: linear-gradient(
+      135deg,
+      oklch(var(--primary)),
+      oklch(var(--accent))
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ─── Progress ring ─── */
+  .progress-ring {
+    transform-origin: center;
+    transform: rotate(-90deg);
+    transition: stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* ─── Streak counter pulse ─── */
+  .streak-pulse {
+    animation: streak-pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes streak-pulse {
+    0%,
+    100% {
+      text-shadow: 0 0 8px oklch(var(--accent) / 0.4);
+    }
+    50% {
+      text-shadow: 0 0 20px oklch(var(--accent) / 0.7), 0 0 40px
+        oklch(var(--primary) / 0.3);
+    }
+  }
+
+  /* ─── Meal type pill ─── */
+  .meal-pill-breakfast {
+    background: oklch(0.96 0.06 80);
+    color: oklch(0.45 0.12 80);
+    border: 1px solid oklch(0.86 0.08 80);
+  }
+  .dark .meal-pill-breakfast {
+    background: oklch(0.25 0.07 80);
+    color: oklch(0.82 0.1 80);
+    border-color: oklch(0.35 0.08 80);
+  }
+
+  .meal-pill-lunch {
+    background: oklch(0.96 0.06 155);
+    color: oklch(0.45 0.14 155);
+    border: 1px solid oklch(0.84 0.08 155);
+  }
+  .dark .meal-pill-lunch {
+    background: oklch(0.22 0.07 155);
+    color: oklch(0.78 0.12 155);
+    border-color: oklch(0.32 0.08 155);
+  }
+
+  .meal-pill-dinner {
+    background: oklch(0.95 0.06 250);
+    color: oklch(0.45 0.14 250);
+    border: 1px solid oklch(0.83 0.08 250);
+  }
+  .dark .meal-pill-dinner {
+    background: oklch(0.22 0.07 250);
+    color: oklch(0.75 0.12 250);
+    border-color: oklch(0.32 0.08 250);
+  }
+
+  .meal-pill-snack {
+    background: oklch(0.95 0.05 25);
+    color: oklch(0.45 0.14 25);
+    border: 1px solid oklch(0.83 0.08 25);
+  }
+  .dark .meal-pill-snack {
+    background: oklch(0.22 0.07 25);
+    color: oklch(0.75 0.12 25);
+    border-color: oklch(0.32 0.08 25);
+  }
+
+  /* ─── Reduced motion overrides ─── */
+  @media (prefers-reduced-motion: reduce) {
+    .tile-hover:hover,
+    .tile-hover {
+      transform: none !important;
+      transition: none !important;
+    }
+    .milestone-badge {
+      animation: none;
+    }
+    .success-pop,
+    .complete-burst,
+    .shimmer,
+    .fade-up,
+    .fade-in,
+    .streak-pulse {
+      animation: none !important;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "overview": "FitPlan 30 is a 30-day fitness companion app for Android mobile and desktop web. It guides users through a personalized fitness journey with exercise tracks adapted to their flexibility level (Beginner, Intermediate, Advanced), automatic step tracking via device motion sensor, and manual water intake logging. Each day features tailored workouts, diet plans, and health tracking — all saved to the backend for multi-session persistence.",
+  "features": [
+    "Flexibility-based exercise personalization (Beginner/Intermediate/Advanced tracks)",
+    "30-day sequential workout plan with diet plans for every day",
+    "Automatic step tracking via device accelerometer (no manual entry)",
+    "Manual water intake logging with quick-add buttons and daily goal",
+    "Progress tracking with sequential day unlocking (developer mode available)",
+    "Premium UI with glowing borders, milestone badges, and animations",
+    "Multi-session and multi-device persistence via backend"
+  ],
+  "category": "health-fitness",
+  "tags": [
+    "fitness",
+    "workout",
+    "step-tracking",
+    "water-intake",
+    "30-day-plan",
+    "health",
+    "mobile",
+    "personalized"
+  ],
+  "last_updated": "2026-05-01T02:32:34.877Z"
+}
